@@ -24,8 +24,20 @@ struct ContentView: View {
                     .foregroundColor(.red)
             }
             .font(.system(size: 36).weight(.black))
+            
+            VStack {
+                ForEach(0..<11, id: \.self) { row in
+                    HStack {
+                        ForEach(0..<22, id: \.self) { column in
+                            Text("X")
+                        }
+                    }
+                }
+            }
         }
         .padding()
+        .fixedSize()
+        .preferredColorScheme(.dark)
     }
 }
 
