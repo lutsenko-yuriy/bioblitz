@@ -12,6 +12,7 @@
 		F411A5C42957A9A60077B2E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F411A5C32957A9A60077B2E6 /* Assets.xcassets */; };
 		F411A5C72957A9A60077B2E6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F411A5C62957A9A60077B2E6 /* Preview Assets.xcassets */; };
 		F411A5CF2957AE0F0077B2E6 /* Bacteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411A5CE2957AE0F0077B2E6 /* Bacteria.swift */; };
+		F411A5D12957B1840077B2E6 /* BacteriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F411A5D02957B1840077B2E6 /* BacteriaView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		F411A5C62957A9A60077B2E6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F411A5C82957A9A60077B2E6 /* BioBlitz.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BioBlitz.entitlements; sourceTree = "<group>"; };
 		F411A5CE2957AE0F0077B2E6 /* Bacteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bacteria.swift; sourceTree = "<group>"; };
+		F411A5D02957B1840077B2E6 /* BacteriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BacteriaView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				F411A5C32957A9A60077B2E6 /* Assets.xcassets */,
 				F411A5C82957A9A60077B2E6 /* BioBlitz.entitlements */,
 				F411A5C52957A9A60077B2E6 /* Preview Content */,
+				F411A5D02957B1840077B2E6 /* BacteriaView.swift */,
 			);
 			path = BioBlitz;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 				F411A5C22957A9A50077B2E6 /* ContentView.swift in Sources */,
 				F411A5C02957A9A50077B2E6 /* BioBlitzApp.swift in Sources */,
 				F411A5CF2957AE0F0077B2E6 /* Bacteria.swift in Sources */,
+				F411A5D12957B1840077B2E6 /* BacteriaView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
