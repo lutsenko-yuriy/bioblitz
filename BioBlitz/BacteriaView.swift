@@ -16,7 +16,7 @@ struct BacteriaView: View {
         switch bacteria.color {
         case .red: return "chevron.up.square.fill"
         case .green: return "chevron.up.circle.fill"
-        default: return "chevron.up.circle.fill"
+        default: return "chevron.up.circle"
         }
     }
     

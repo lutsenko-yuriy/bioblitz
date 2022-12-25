@@ -13,9 +13,9 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HStack {
-                
                 Text("GREEN: \(board.greenScore)")
                     .foregroundColor(.green)
+                    .opacity(board.currentPlayer == .green ? 1 : 0.4)
                 
                 Spacer()
                 
@@ -28,6 +28,7 @@ struct ContentView: View {
                 
                 Text("RED: \(board.redScore)")
                     .foregroundColor(.red)
+                    .opacity(board.currentPlayer == .red ? 1 : 0.4)
             }
             .font(.system(size: 36).weight(.black))
             
