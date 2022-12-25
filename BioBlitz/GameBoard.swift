@@ -58,4 +58,59 @@ class GameBoard: ObservableObject {
         return grid[row][column]
     }
     
+    func infect(from source: Bacteria) {
+        objectWillChange.send()
+        
+        var bacteriaToInfect = [Bacteria?]()
+        
+        switch source.direction {
+        case .north:
+            bacteriaToInfect.append(getBacteria(atRow: source.row - 1, column: source.column))
+        case .south:
+            bacteriaToInfect.append(getBacteria(atRow: source.row + 1, column: source.column))
+        case .east:
+            bacteriaToInfect.append(getBacteria(atRow: source.row, column: source.column + 1))
+        case .west:
+            bacteriaToInfect.append(getBacteria(atRow: source.row, column: source.column - 1))
+        }
+        
+        if let indirect = getBacteria(atRow: source.row - 1, column: source.column) {
+            if indirect.direction == .south {
+                bacteriaToInfect.append(indirect)
+            }
+        }
+        
+        if let indirect = getBacteria(atRow: source.row + 1, column: source.column) {
+            if indirect.direction == .north {
+                bacteriaToInfect.append(indirect)
+            }
+        }
+        
+        if let indirect = getBacteria(atRow: source.row, column: source.column - 1) {
+            if indirect.direction == .east {
+                bacteriaToInfect.append(indirect)
+            }
+        }
+        
+        if let indirect = getBacteria(atRow: source.row, column: source.column + 1) {
+            if indirect.direction == .west {
+                bacteriaToInfect.append(indirect)
+            }
+        }
+        
+        for case let bacteria? in bacteriaToInfect {
+            if bacteria.color != source.color {
+                bacteria.color = source.color
+                infect(from: bacteria)
+            }
+        }
+    }
+    
+    func rotate(bacteria: Bacteria) {
+        objectWillChange.send()
+        
+        bacteria.direction = bacteria.direction.next
+        
+        infect(from: bacteria)
+    }
 }
