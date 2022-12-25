@@ -33,6 +33,7 @@ struct ContentView: View {
                             let bacteria = board.grid[row][column]
                             
                             BacteriaView(bacteria: bacteria) {
+                                guard bacteria.color == .red || bacteria.color == .green else { return }
                                 board.rotate(bacteria: bacteria)
                             }
                         }
