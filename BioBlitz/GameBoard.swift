@@ -13,6 +13,12 @@ class GameBoard: ObservableObject {
     
     @Published var grid = [[Bacteria]]()
     
+    @Published var currentPlayer = Color.green
+    @Published var greenScore = 1
+    @Published var redScore = 1
+    
+    private var bacteriaBeingInfected = 0
+    
     init() {
         reset()
     }
@@ -45,6 +51,9 @@ class GameBoard: ObservableObject {
             }
             
             grid.append(newRow)
+            
+            updateScores()
+            currentPlayer = .green
         }
         
         grid[0][0].color = .green
@@ -101,20 +110,64 @@ class GameBoard: ObservableObject {
         for case let bacteria? in bacteriaToInfect {
             if bacteria.color != source.color {
                 bacteria.color = source.color
+                bacteriaBeingInfected += 1
                 
                 Task { @MainActor in
                     try await Task.sleep(nanoseconds: 50_000_000)
+                    bacteriaBeingInfected -= 1
                     infect(from: bacteria)
                 }
             }
         }
+        
+        updateScores()
     }
     
     func rotate(bacteria: Bacteria) {
+        guard bacteria.color == currentPlayer else { return }
+        
         objectWillChange.send()
         
         bacteria.direction = bacteria.direction.next
         
         infect(from: bacteria)
+    }
+    
+    func changePlayer() {
+        if currentPlayer == .green {
+            currentPlayer = .red
+        } else if currentPlayer == .red {
+            currentPlayer = .green
+        }
+    }
+    
+    func updateScores() {
+        var newRedScore = 0
+        var newGreenScore = 0
+        
+        for row in grid {
+            for bacteria in row {
+                if bacteria.color == .red {
+                    newRedScore += 1
+                } else if bacteria.color == .green {
+                    newGreenScore += 1
+                }
+            }
+        }
+        
+        redScore = newRedScore
+        greenScore = newGreenScore
+        
+        if bacteriaBeingInfected == 0 {
+            withAnimation(.spring() ) {
+                if redScore == 0 {
+                    
+                } else if greenScore == 0 {
+                    
+                } else {
+                    changePlayer()
+                }
+            }
+        }
     }
 }

@@ -9,19 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var board = GameBoard()
+    
     var body: some View {
         VStack {
             HStack {
-                Text("GREEN: 0")
+                
+                Text("GREEN: \(board.greenScore)")
                     .foregroundColor(.green)
                 
                 Spacer()
                 
-                Text("BIOBLITZ")
+                Text("RESET")
+                    .onTapGesture {
+                        board.reset()
+                    }
                 
                 Spacer()
                 
-                Text("RED: 0")
+                Text("RED: \(board.redScore)")
                     .foregroundColor(.red)
             }
             .font(.system(size: 36).weight(.black))
@@ -33,7 +38,6 @@ struct ContentView: View {
                             let bacteria = board.grid[row][column]
                             
                             BacteriaView(bacteria: bacteria) {
-                                guard bacteria.color == .red || bacteria.color == .green else { return }
                                 board.rotate(bacteria: bacteria)
                             }
                         }
